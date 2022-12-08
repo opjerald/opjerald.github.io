@@ -32,6 +32,7 @@
 @easing: cubic-bezier(0.645, 0.045, 0.355, 1);
 @transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 
+@xs: 400px;
 @sm: 630px;
 @md: 900px;
 @lg: 1024px;
@@ -852,6 +853,9 @@ li {
     @media (max-width: @sm) {
       width: 400px;
     }
+    @media (max-width: @xs) {
+      width: 300px;
+    }
     h2 {
       font-size: @fz-md;
       font-family: @font-mono;
@@ -906,6 +910,9 @@ li {
         transition: @transition;
         line-height: 1;
         margin-top: 10px;
+        @media (max-width: @lg) {
+          width: 100%;
+        }
 
         &:hover {
           background-color: @green-tint;
