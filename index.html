@@ -31,7 +31,7 @@
         </ol>
       </div>
       <div class="nav-btn">
-        <a href="#">Resume</a>
+        <a href="/files/Resume.pdf">Resume</a>
         <div class="hamburger">
           <span></span>
           <span></span>
@@ -65,7 +65,7 @@
           My dream is to become a full-stack developer but right now I want to become front-end developer first.
         </p>
         <p>I am open for any opportunities in front-end developing. </p>
-        <a href="#">Contact me!</a>
+        <a href="#contact" class="nav-item">Contact me!</a>
       </div>
       <div class="img-wrapper reveal">
         <img src="/images/profile.jpg" alt="profile">
@@ -218,10 +218,11 @@
       </div>
     </div>
   </section>
+  <!-- Small Projects -->
   <section class="other-projects-container">
     <h2>Small Projects</h2>
     <ul class="project-grid">
-      <li class="project">
+      <li class="project reveal">
         <div class="project-inner">
           <header>
             <div class="project-top">
@@ -247,7 +248,7 @@
           </footer>
         </div>
       </li>
-      <li class="project">
+      <li class="project reveal">
         <div class="project-inner">
           <header>
             <div class="project-top">
@@ -272,7 +273,7 @@
           </ul>
         </div>
       </li>
-      <li class="project">
+      <li class="project reveal">
         <div class="project-inner">
           <header>
             <div class="project-top">
@@ -298,6 +299,45 @@
       </li>
     </ul>
   </section>
+  <!-- Contacts -->
+  <section id="contact" class="contact-container">
+    <div class="heading reveal">
+      <h2 class="contact-heading">What's next?</h2>
+      <h3 class="contact-subheading">Let's get in touch!</h3>
+      <p>You can email me at <span>dionsonjeraldranoco@gmail.com</span> or you can send me a message over the form and I
+        will get back to you as soon as possible.</p>
+    </div>
+    <div class="form reveal">
+      <form action="https://formsubmit.co/c5a68608f561896698b8baf07f3648e8" method="POST">
+        <h2>Send me a message over here!</h2>
+        <input type="hidden" name="_captcha" value="false">
+        <label for="name">Full Name:
+          <span class="required">*</span>
+          <span class="error name-error"></span></label>
+        <input type="text" name="name" id="name">
+        <label for="email">Email:
+          <span class="required">*</span>
+          <span class="error email-error"></span></label>
+        <input type="email" name="email" id="email">
+        <label for="message">Message:
+          <span class="required">*</span>
+          <span class="error message-error"></span></label>
+        <textarea name="message" id="message"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="links">
+      <a href="https://www.facebook.com/opjerald" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.messenger.com/t/100003537887493" target="_blank"><i class="bi bi-messenger"></i></a>
+      <a href="https://www.instagram.com/opjerald/" target="_blank"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/jerald-dionson-9a0451244/" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github/opjerald" target="_blank"><i class="bi bi-github"></i></a>
+    </div>
+    <p>Made by Jerald Dionson @ <span class="date"></span></p>
+  </footer>
 </body>
 
 </html>

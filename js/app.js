@@ -50,53 +50,48 @@ window.onload = function () {
     }
   }
 
-  // Typing effect!
+  // form validation
 
-  // const carouselList = [
-  //   { text: 'Dionson, Jerald', color: '#00897b' },
-  //   { text: 'a front-end developer', color: 'goldenrod' },
-  //   { text: 'a back-end developer', color: 'crimson' },
-  // ];
+  const form = document.querySelector('form');
+  const name = document.querySelector('#name');
+  const email = document.querySelector('#email');
+  const message = document.querySelector('#message');
 
-  // async function typeSentence(sentence, ref) {
-  //   const letters = sentence.split('');
-  //   const element = document.querySelector(ref);
-  //   for (let i = 0; i < letters.length; i++) {
-  //     await wait(100);
-  //     element.innerHTML += letters[i];
-  //   }
-  //   return;
-  // }
+  const nameError = document.querySelector('.name-error');
+  const emailError = document.querySelector('.email-error');
+  const messageError = document.querySelector('.message-error');
 
-  // async function deleteSentence(ref) {
-  //   const element = document.querySelector(ref);
-  //   const sentence = element.innerHTML;
-  //   const letters = sentence.split('');
-  //   while (letters.length > 0) {
-  //     await wait(100);
-  //     letters.pop();
-  //     element.innerHTML = letters.join('');
-  //   }
-  // }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let hasError = false;
 
-  // async function carousel(list, ref) {
-  //   const element = document.querySelector(ref);
+    if (name.value.trim() === '') {
+      nameError.innerHTML = 'Name is a required field.';
+      hasError = true;
+    }
 
-  //   let i = 0;
-  //   while (true) {
-  //     element.style.color = list[i].color;
-  //     await typeSentence(list[i].text, ref);
-  //     await wait(1500);
-  //     await deleteSentence(ref);
-  //     await wait(500);
-  //     i++;
-  //     if (i >= list.length) i = 0;
-  //   }
-  // }
+    if (email.value.trim() === '') {
+      emailError.innerHTML = 'Email is a required field.';
+      hasError = true;
+    }
 
-  // function wait(ms) {
-  //   return new Promise((res) => setTimeout(res, ms));
-  // }
+    if (email.value.split('@')[1] == null) {
+      emailError.innerHTML = 'Email is invalid';
+      hasError = true;
+    } else if (email.value.split('@')[1].split('.')[1] == null) {
+      emailError.innerHTML = 'Email is invalid';
+      hasError = true;
+    }
 
-  // carousel(carouselList, '.feature-text');
+    if (message.value.trim() === '') {
+      messageError.innerHTML = 'Message is a required field.';
+      hasError = true;
+    }
+
+    if (!hasError) {
+      e.target.submit();
+    }
+  });
+
+  document.querySelector('.date').innerHTML = new Date().getFullYear();
 };
