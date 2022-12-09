@@ -26,10 +26,6 @@
 @fz-xxl: 22px;
 @fz-heading: 32px;
 @border-radius: 4px;
-@nav-scroll-height: 70px;
-@tab-height: 42px;
-@tab-width: 120px;
-@easing: cubic-bezier(0.645, 0.045, 0.355, 1);
 @transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 
 @xs: 400px;
@@ -61,8 +57,14 @@ html {
   counter-reset: section 0;
 }
 
-body {
-  overflow: hidden;
+html {
+  &.blur {
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    > body > *:not(.nav-list) {
+      filter: blur(10px);
+    }
+  }
 }
 
 a {
@@ -149,10 +151,6 @@ li {
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
-  @media (max-width: @md) {
-    backdrop-filter: blur(0px);
-    background-color: rgba(@navy, 0.9);
-  }
 
   nav {
     max-width: 1420px;
@@ -179,6 +177,7 @@ li {
         height: 40px;
         object-fit: cover;
         border-radius: 50px;
+        z-index: 99;
       }
       h3 {
         text-transform: uppercase;
@@ -186,67 +185,50 @@ li {
         letter-spacing: 2px;
         margin-top: 8px;
         color: @white;
+        z-index: 99;
         font-family: @font-sans;
       }
     }
-    .nav-menu {
-      display: flex;
-      -webkit-box-align: center;
-      align-items: center;
-
-      &.active {
-        height: 300px;
-      }
+    ol {
+      list-style-type: none;
       @media (max-width: @md) {
-        height: 0;
-        top: 64px;
-        position: absolute;
-        left: 0;
-        width: 100%;
-        transition: @transition;
-        background-color: rgba(@navy, 0.9);
-      }
-      ol {
+        position: fixed;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 0px;
-        margin: 0px;
-        -webkit-box-pack: justify;
-        -webkit-box-align: center;
-
+        justify-content: center;
+        flex-direction: column;
+        left: 100%;
+        top: 0;
+        height: 100vh;
+        width: 80%;
+        background-color: @navy-bg;
+        transition: 0.5s ease left;
+        gap: 10px;
         &.active {
-          opacity: 1;
+          left: 20%;
+        }
+      }
+      li {
+        margin: 0 5px;
+        position: relative;
+        font-size: @fz-xs;
+        counter-increment: item 1;
+        display: inline-block;
+        a {
+          padding: 10px;
+          &:hover {
+            color: @green;
+          }
+          &::before {
+            content: '0' counter(item) '.';
+            margin-right: 5px;
+            color: @green;
+            font-size: @fz-xxs;
+            text-align: right;
+          }
         }
         @media (max-width: @md) {
-          display: block;
-          width: fit-content;
-          margin: 0 auto 0 auto;
-          text-align: center;
-          transition: 0.2s;
-          opacity: 0;
-        }
-        li {
-          margin: 0 5px;
-          position: relative;
-          font-size: @fz-xs;
-          counter-increment: item 1;
-          a {
-            padding: 10px;
-            &:hover {
-              color: @green;
-            }
-            &::before {
-              content: '0' counter(item) '.';
-              margin-right: 5px;
-              color: @green;
-              font-size: @fz-xxs;
-              text-align: right;
-            }
-          }
-          @media (max-width: @md) {
-            margin-bottom: 20px;
-          }
+          margin-bottom: 20px;
         }
       }
     }
@@ -346,6 +328,9 @@ li {
     line-height: 1;
     margin-top: 50px;
     transform: @transition;
+    &:hover {
+      background-color: @green-tint;
+    }
   }
   @media (max-width: 480px) {
     margin-top: -10vh;
@@ -528,9 +513,9 @@ li {
     padding: 0 20px;
 
     &:not(:last-of-type) {
-      margin-bottom: 100px;
+      margin-bottom: 30px;
       @media (max-width: @md) {
-        margin-bottom: 70px;
+        margin-bottom: 10px;
       }
     }
 
@@ -947,5 +932,17 @@ footer {
     font-family: @font-mono;
     font-size: @fz-xxs;
     line-height: 1;
+  }
+}
+
+&::-webkit-scrollbar {
+  transition: @transition;
+  width: 0.3rem;
+  &-thumb {
+    background-color: rgba(@slate, 0.6);
+    border-radius: 1rem;
+    &:hover {
+      background-color: @slate;
+    }
   }
 }
